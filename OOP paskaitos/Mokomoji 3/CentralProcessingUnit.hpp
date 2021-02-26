@@ -4,8 +4,8 @@
 
 class CentralProcessingUnit {
     private:
-        string manufacturerName;
-        string modelName;
+        std::string manufacturerName;
+        std::string modelName;
         int cores;
         int threads;
         float voltage;
@@ -14,7 +14,7 @@ class CentralProcessingUnit {
         float multiplier;
         float coreClock;
     public:
-        CentralProcessingUnit(string manufacturerName, string modelName);
+        CentralProcessingUnit(std::string manufacturerName, std::string modelName);
         ~CentralProcessingUnit();
         void setCores(int cores);
         int getCores();
@@ -35,7 +35,7 @@ class CentralProcessingUnit {
         void calculateMultiplier();
         void calculateCoreClock();
     public:
-        string toString();
+        std::string toString();
 };
 
 
