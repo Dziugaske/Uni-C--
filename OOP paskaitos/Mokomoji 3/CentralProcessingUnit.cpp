@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-CentralProcessingUnit(std::string manufacturerName, std::string modelName) {
+cpu::CentralProcessingUnit::CentralProcessingUnit(std::string manufacturerName, std::string modelName) {
     this->manufacturerName = manufacturerName;
     this->modelName = modelName;
     cores = 0;
@@ -17,33 +17,33 @@ CentralProcessingUnit(std::string manufacturerName, std::string modelName) {
     multiplier = 0;
     coreClock = 0;
 }
-~CentralProcessingUnit() {
+cpu::CentralProcessingUnit::~CentralProcessingUnit() {
 }
-void setCores(int cores) {
+void cpu::CentralProcessingUnit::setCores(int cores) {
     this->cores = cores;
 }
-int getCores() {
+int cpu::CentralProcessingUnit::getCores() {
     return cores;
 }
-void setThreads(int threads) {
+void cpu::CentralProcessingUnit::setThreads(int threads) {
     this->threads = threads;
 }
-int getThreads() {
+int cpu::CentralProcessingUnit::getThreads() {
     return threads;
 }
-void setVoltage(float voltage) {
+void cpu::CentralProcessingUnit::setVoltage(float voltage) {
     this->voltage = voltage;
 }
-float getVoltage() {
+float cpu::CentralProcessingUnit::getVoltage() {
     return voltage;
 }
-void setTdp(float tdp) {
+void cpu::CentralProcessingUnit::setTdp(float tdp) {
     this->tdp = tdp;
 }
-float getTdp() {
+float cpu::CentralProcessingUnit::getTdp() {
     return tdp;
 }
-void setBaseClock(float baseClock) {
+void cpu::CentralProcessingUnit::setBaseClock(float baseClock) {
     this->baseClock = baseClock;
     if (multiplier != 0) {
         calculateCoreClock();
@@ -51,10 +51,10 @@ void setBaseClock(float baseClock) {
         calculateMultiplier();
     }
 }
-float getBaseClock() {
+float cpu::CentralProcessingUnit::getBaseClock() {
     return baseClock;
 }
-void setMultiplier(float multiplier) {
+void cpu::CentralProcessingUnit::setMultiplier(float multiplier) {
     this->multiplier = multiplier;
     if (baseClock != 0) {
         calculateCoreClock();
@@ -62,10 +62,10 @@ void setMultiplier(float multiplier) {
         calculateBaseClock();
     }
 }
-float getMultiplier() {
+float cpu::CentralProcessingUnit::getMultiplier() {
     return multiplier;
 }
-void setCoreClock(float coreClock) {
+void cpu::CentralProcessingUnit::setCoreClock(float coreClock) {
     this->coreClock = coreClock;
     if (multiplier != 0) {
         calculateBaseClock();
@@ -73,32 +73,28 @@ void setCoreClock(float coreClock) {
         calculateMultiplier();
     }
 }
-float getCoreClock() {
+float cpu::CentralProcessingUnit::getCoreClock() {
     return coreClock;
 }
-
-private:
-void calculateBaseClock() {
+void cpu::CentralProcessingUnit::calculateBaseClock() {
     baseClock = coreClock / multiplier;
 }
-void calculateMultiplier() {
+void cpu::CentralProcessingUnit::calculateMultiplier() {
     multiplier = coreClock / baseClock;
 }
-void calculateCoreClock() {
+void cpu::CentralProcessingUnit::calculateCoreClock() {
     coreClock = baseClock * multiplier;
 }
-
-public:
-string toString() {
-    ostringstream ss;
-    ss << "Manufactured by: " << manufacturerName << endl;
-    ss << "Model name: " << modelName << endl;
-    ss << "Cores: " << cores << endl;
-    ss << "Threads: " << threads << endl;
-    ss << "Voltage: " << voltage << endl;
-    ss << "TDP: " << tdp << endl;
-    ss << "Base clock: " << baseClock << endl;
-    ss << "Multiplier: " << multiplier << endl;
-    ss << "Core clock: " << coreClock << endl;
+std::string cpu::CentralProcessingUnit::toString() {
+    std::ostringstream ss;
+    ss << "Manufactured by: " << manufacturerName << std::endl;
+    ss << "Model name: " << modelName << std::endl;
+    ss << "Cores: " << cores << std::endl;
+    ss << "Threads: " << threads << std::endl;
+    ss << "Voltage: " << voltage << std::endl;
+    ss << "TDP: " << tdp << std::endl;
+    ss << "Base clock: " << baseClock << std::endl;
+    ss << "Multiplier: " << multiplier << std::endl;
+    ss << "Core clock: " << coreClock << std::endl;
     return ss.str();
 }

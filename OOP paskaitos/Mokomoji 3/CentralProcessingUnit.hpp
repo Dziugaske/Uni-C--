@@ -1,9 +1,10 @@
 #ifndef CENTRAL_PROCESSING_UNIT
 #define CENTRAL_PROCESSING_UNIT
+#include <string>
 
-
-class CentralProcessingUnit {
-    private:
+namespace cpu {
+    class CentralProcessingUnit {
+      private:
         std::string manufacturerName;
         std::string modelName;
         int cores;
@@ -13,7 +14,8 @@ class CentralProcessingUnit {
         float baseClock;
         float multiplier;
         float coreClock;
-    public:
+
+      public:
         CentralProcessingUnit(std::string manufacturerName, std::string modelName);
         ~CentralProcessingUnit();
         void setCores(int cores);
@@ -30,13 +32,14 @@ class CentralProcessingUnit {
         float getMultiplier();
         void setCoreClock(float coreClock);
         float getCoreClock();
-    private:
+
+      private:
         void calculateBaseClock();
         void calculateMultiplier();
         void calculateCoreClock();
-    public:
+
+      public:
         std::string toString();
-};
-
-
+    };
+}
 #endif
