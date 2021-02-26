@@ -36,6 +36,8 @@ namespace cpu {
         float getCoreClock();
 
       private:
+        void calculateCores();
+        void calculateThreads();
         void calculateBaseClock();
         void calculateMultiplier();
         void calculateCoreClock();
