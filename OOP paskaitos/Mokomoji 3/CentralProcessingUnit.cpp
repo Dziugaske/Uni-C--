@@ -6,7 +6,10 @@
 #include <string>
 #include <vector>
 
+int cpu::CentralProcessingUnit::counterID = 1;
 cpu::CentralProcessingUnit::CentralProcessingUnit(std::string manufacturerName, std::string modelName) {
+    cpuID = counterID;
+    ++counterID;
     this->manufacturerName = manufacturerName;
     this->modelName = modelName;
     cores = 0;
@@ -87,6 +90,7 @@ void cpu::CentralProcessingUnit::calculateCoreClock() {
 }
 std::string cpu::CentralProcessingUnit::toString() {
     std::ostringstream ss;
+    ss << "CPU ID: " << cpuID << std::endl;
     ss << "Manufactured by: " << manufacturerName << std::endl;
     ss << "Model name: " << modelName << std::endl;
     ss << "Cores: " << cores << std::endl;

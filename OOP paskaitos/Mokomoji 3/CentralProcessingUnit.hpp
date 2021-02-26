@@ -5,6 +5,8 @@
 namespace cpu {
     class CentralProcessingUnit {
       private:
+        static int counterID;
+        int cpuID;
         std::string manufacturerName;
         std::string modelName;
         int cores;
