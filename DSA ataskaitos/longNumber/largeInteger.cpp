@@ -45,6 +45,9 @@ LargeInteger LargeInteger::operator+(const LargeInteger &n2) {
                 remainder = 0;
             }
         }
+        if (remainder == 1) {
+            ++n.digits[n.digits.size() - 1];
+        }
         if (n.digits[n.digits.size() - 1] == 0) {
             n.digits.pop_back();
         }
@@ -69,6 +72,9 @@ LargeInteger LargeInteger::operator+(const LargeInteger &n2) {
             } else {
                 remainder = 0;
             }
+        }
+        if (remainder == 1) {
+            ++n.digits[n.digits.size() - 1];
         }
         if (n.digits[n.digits.size() - 1] == 0) {
             n.digits.pop_back();
