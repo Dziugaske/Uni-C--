@@ -1,4 +1,4 @@
-#include "CentralProcessingUnit.hpp"
+#include "CentralProcessingUnit.h"
 #include <stdexcept>
 #include <fstream>
 #include <iostream>
