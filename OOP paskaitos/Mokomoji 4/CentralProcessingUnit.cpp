@@ -25,7 +25,6 @@ CentralProcessingUnit::~CentralProcessingUnit() {
 void CentralProcessingUnit::setCores(int cores) {
     if (cores > 0 && cores <= 128) {
         this->cores = cores;
-        calculateThreads();
     } else {
         throw std::invalid_argument("Invalid core count.");
     }
@@ -36,7 +35,6 @@ int CentralProcessingUnit::getCores() {
 void CentralProcessingUnit::setThreads(int threads) {
     if (threads >= 2 && threads <= 256) {
         this->threads = threads;
-        calculateCores();
     } else {
         throw std::invalid_argument("Invalid thread count.");
     }
@@ -67,11 +65,6 @@ float CentralProcessingUnit::getTdp() {
 void CentralProcessingUnit::setBaseClock(float baseClock) {
     if (baseClock > 0 && baseClock < 1000) {
         this->baseClock = baseClock;
-        if (multiplier != 0) {
-            calculateCoreClock();
-        } else if (coreClock != 0) {
-            calculateMultiplier();
-        }
     } else {
         throw std::invalid_argument("Invalid base clock.");
     }
@@ -82,11 +75,6 @@ float CentralProcessingUnit::getBaseClock() {
 void CentralProcessingUnit::setMultiplier(float multiplier) {
     if (multiplier > 0 && multiplier < 50) {
         this->multiplier = multiplier;
-        if (baseClock != 0) {
-            calculateCoreClock();
-        } else if (coreClock != 0) {
-            calculateBaseClock();
-        }
     } else {
         throw std::invalid_argument("Invalid multiplier.");
     }
@@ -97,11 +85,6 @@ float CentralProcessingUnit::getMultiplier() {
 void CentralProcessingUnit::setCoreClock(float coreClock) {
     if (coreClock > 1000 && coreClock < 6000) {
         this->coreClock = coreClock;
-        if (multiplier != 0) {
-            calculateBaseClock();
-        } else if (baseClock != 0) {
-            calculateMultiplier();
-        }
     } else {
         throw std::invalid_argument("Invalid core clock.");
     }
