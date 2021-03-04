@@ -81,7 +81,7 @@ float CentralProcessingUnit::getCoreClock() {
 }
 std::string CentralProcessingUnit::toString() const {
     std::ostringstream ss;
-    ss << cpuID << " " << manufacturer << " " << manufacturer << " ";
+    ss << cpuID << " " << manufacturer << " " << model << " ";
     ss << cores << " " << threads << " " << voltage << " " << tdp << " ";
     ss << baseClock << " " << multiplier << " " << coreClock << std::endl;
     return ss.str();
@@ -121,7 +121,7 @@ bool CentralProcessingUnit::operator<=(const CentralProcessingUnit &other) const
         return *this < other;
     }
 }
-CentralProcessingUnit& CentralProcessingUnit::operator++() {
+CentralProcessingUnit &CentralProcessingUnit::operator++() {
     ++multiplier;
     return *this;
 }
@@ -130,7 +130,7 @@ CentralProcessingUnit CentralProcessingUnit::operator++(int) {
     ++multiplier;
     return temp;
 }
-CentralProcessingUnit& CentralProcessingUnit::operator--() {
+CentralProcessingUnit &CentralProcessingUnit::operator--() {
     --multiplier;
     return *this;
 }
@@ -139,11 +139,11 @@ CentralProcessingUnit CentralProcessingUnit::operator--(int) {
     --multiplier;
     return temp;
 }
-std::ostream& operator<<(std::ostream& os, const CentralProcessingUnit& cpu) {
+std::ostream &operator<<(std::ostream &os, const CentralProcessingUnit &cpu) {
     os << cpu.toString();
     return os;
 }
-std::istream& operator>>(std::istream& is, CentralProcessingUnit& cpu) {
+std::istream &operator>>(std::istream &is, CentralProcessingUnit &cpu) {
     CentralProcessingUnit temp;
     is >> temp.manufacturer >> temp.model >> temp.cores >> temp.threads;
     is >> temp.voltage >> temp.tdp >> temp.baseClock >> temp.multiplier >> temp.coreClock;

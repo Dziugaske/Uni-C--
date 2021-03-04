@@ -45,11 +45,11 @@ class CentralProcessingUnit {
     bool operator<(const CentralProcessingUnit &other) const;
     bool operator>=(const CentralProcessingUnit &other) const;
     bool operator<=(const CentralProcessingUnit &other) const;
-    CentralProcessingUnit& operator++();
+    CentralProcessingUnit &operator++();
     CentralProcessingUnit operator++(int);
-    CentralProcessingUnit& operator--();
+    CentralProcessingUnit &operator--();
     CentralProcessingUnit operator--(int);
-    friend std::ostream& operator<<(std::ostream& os, const CentralProcessingUnit& cpu);
-    friend std::istream& operator>>(std::istream& is, CentralProcessingUnit& cpu);
+    friend std::ostream &operator<<(std::ostream &os, const CentralProcessingUnit &cpu);
+    friend std::istream &operator>>(std::istream &is, CentralProcessingUnit &cpu);
 };
 #endif
