@@ -38,7 +38,7 @@ class CentralProcessingUnit {
     float getMultiplier();
     void setCoreClock(const float &coreClock);
     float getCoreClock();
-    std::string toString();
+    std::string toString() const;
     bool operator==(const CentralProcessingUnit &other) const;
     bool operator!=(const CentralProcessingUnit &other) const;
     bool operator>(const CentralProcessingUnit &other) const;
@@ -49,7 +49,7 @@ class CentralProcessingUnit {
     CentralProcessingUnit operator++(int);
     CentralProcessingUnit& operator--();
     CentralProcessingUnit operator--(int);
-    std::ostream& operator<<(std::ostream& os);
-    //CentralProcessingUnit operator>>();
+    friend std::ostream& operator<<(std::ostream& os, const CentralProcessingUnit& cpu);
+    friend std::istream& operator>>(std::istream& is, CentralProcessingUnit& cpu);
 };
 #endif

@@ -79,7 +79,7 @@ void CentralProcessingUnit::setCoreClock(const float &coreClock) {
 float CentralProcessingUnit::getCoreClock() {
     return coreClock;
 }
-std::string CentralProcessingUnit::toString() {
+std::string CentralProcessingUnit::toString() const {
     std::ostringstream ss;
     ss << cpuID << " " << manufacturer << " " << manufacturer << " ";
     ss << cores << " " << threads << " " << voltage << " " << tdp << " ";
@@ -139,7 +139,24 @@ CentralProcessingUnit CentralProcessingUnit::operator--(int) {
     --multiplier;
     return temp;
 }
-std::ostream& CentralProcessingUnit::operator<<(std::ostream& os) {
-    os << toString();
+std::ostream& operator<<(std::ostream& os, const CentralProcessingUnit& cpu) {
+    os << cpu.toString();
     return os;
+}
+std::istream& operator>>(std::istream& is, CentralProcessingUnit& cpu) {
+    CentralProcessingUnit temp;
+    is >> temp.manufacturer >> temp.model >> temp.cores >> temp.threads;
+    is >> temp.voltage >> temp.tdp >> temp.baseClock >> temp.multiplier >> temp.coreClock;
+    CentralProcessingUnit safetyObject;
+    safetyObject.setManufacturer(temp.manufacturer);
+    safetyObject.setModel(temp.model);
+    safetyObject.setCores(temp.cores);
+    safetyObject.setThreads(temp.threads);
+    safetyObject.setVoltage(temp.voltage);
+    safetyObject.setTdp(temp.tdp);
+    safetyObject.setBaseClock(temp.baseClock);
+    safetyObject.setMultiplier(temp.multiplier);
+    safetyObject.setCoreClock(temp.coreClock);
+    cpu = safetyObject;
+    return is;
 }

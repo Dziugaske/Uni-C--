@@ -17,6 +17,7 @@ int main() {
     ++cpu;
     int temp = cpu.getMultiplier() + cpu2.getMultiplier();
     cout << temp << endl;
-    cout << cpu.getMultiplier() << endl;
+    cout << cpu << endl;
+    
     return 0;
 }
