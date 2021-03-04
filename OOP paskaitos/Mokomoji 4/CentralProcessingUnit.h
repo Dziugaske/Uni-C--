@@ -1,49 +1,40 @@
-#ifndef CENTRAL_PROCESSING_UNIT
-#define CENTRAL_PROCESSING_UNIT
+#ifndef CENTRALPROCESSINGUNIT_H
+#define CENTRALPROCESSINGUNIT_H
 #include <string>
 
-namespace cpu {
-    class CentralProcessingUnit {
-      private:
-        static int counterID;
-        int cpuID;
-        std::string manufacturerName;
-        std::string modelName;
-        int cores;
-        int threads;
-        float voltage;
-        float tdp;
-        float baseClock;
-        float multiplier;
-        float coreClock;
+class CentralProcessingUnit {
+  private:
+    static int counterID;
+    int cpuID;
+    std::string manufacturer;
+    std::string model;
+    int cores;
+    int threads;
+    float voltage;
+    float tdp;
+    float baseClock;
+    float multiplier;
+    float coreClock;
 
-      public:
-        CentralProcessingUnit(std::string manufacturerName, std::string modelName);
-        ~CentralProcessingUnit();
-        void setCores(int cores);
-        int getCores();
-        void setThreads(int threads);
-        int getThreads();
-        void setVoltage(float voltage);
-        float getVoltage();
-        void setTdp(float tdp);
-        float getTdp();
-        void setBaseClock(float baseClock);
-        float getBaseClock();
-        void setMultiplier(float multiplier);
-        float getMultiplier();
-        void setCoreClock(float coreClock);
-        float getCoreClock();
+  public:
+    CentralProcessingUnit();
+    ~CentralProcessingUnit();
+    void setCores(int cores);
+    int getCores();
+    void setThreads(int threads);
+    int getThreads();
+    void setVoltage(float voltage);
+    float getVoltage();
+    void setTdp(float tdp);
+    float getTdp();
+    void setBaseClock(float baseClock);
+    float getBaseClock();
+    void setMultiplier(float multiplier);
+    float getMultiplier();
+    void setCoreClock(float coreClock);
+    float getCoreClock();
 
-      private:
-        void calculateCores();
-        void calculateThreads();
-        void calculateBaseClock();
-        void calculateMultiplier();
-        void calculateCoreClock();
-
-      public:
-        std::string toString();
-    };
-}
+  public:
+    std::string toString();
+};
 #endif
