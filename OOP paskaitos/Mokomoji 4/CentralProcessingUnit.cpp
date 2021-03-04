@@ -1,8 +1,8 @@
 #include "CentralProcessingUnit.h"
-#include <stdexcept>
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
@@ -10,99 +10,136 @@ int CentralProcessingUnit::counterID = 1;
 CentralProcessingUnit::CentralProcessingUnit() {
     cpuID = counterID;
     ++counterID;
-    this->manufacturer = manufacturer;
-    this->model = model;
-    cores = 0;
-    threads = 0;
-    voltage = 0;
-    tdp = 0;
-    baseClock = 0;
-    multiplier = 0;
-    coreClock = 0;
+    setManufacturer("N/A");
+    setModel("N/A");
+    setCores(0);
+    setThreads(0);
+    setVoltage(0);
+    setTdp(0);
+    setBaseClock(0);
+    setMultiplier(0);
+    setCoreClock(0);
 }
 CentralProcessingUnit::~CentralProcessingUnit() {
 }
-void CentralProcessingUnit::setCores(int cores) {
-    if (cores > 0 && cores <= 128) {
-        this->cores = cores;
-    } else {
-        throw std::invalid_argument("Invalid core count.");
-    }
+int CentralProcessingUnit::getID() {
+    return cpuID;
+}
+void CentralProcessingUnit::setManufacturer(const std::string &manufacturer) {
+    this->manufacturer = manufacturer;
+}
+std::string CentralProcessingUnit::getManufacturer() {
+    return manufacturer;
+}
+void CentralProcessingUnit::setModel(const std::string &model) {
+    this->model = model;
+}
+std::string CentralProcessingUnit::getModel() {
+    return model;
+}
+void CentralProcessingUnit::setCores(const int &cores) {
+    this->cores = cores;
 }
 int CentralProcessingUnit::getCores() {
     return cores;
 }
-void CentralProcessingUnit::setThreads(int threads) {
-    if (threads >= 2 && threads <= 256) {
-        this->threads = threads;
-    } else {
-        throw std::invalid_argument("Invalid thread count.");
-    }
+void CentralProcessingUnit::setThreads(const int &threads) {
+    this->threads = threads;
 }
 int CentralProcessingUnit::getThreads() {
     return threads;
 }
-void CentralProcessingUnit::setVoltage(float voltage) {
-    if (voltage > 0 && voltage < 2) {
-        this->voltage = voltage;
-    } else {
-        throw std::invalid_argument("Invalid voltage.");
-    }
+void CentralProcessingUnit::setVoltage(const float &voltage) {
+    this->voltage = voltage;
 }
 float CentralProcessingUnit::getVoltage() {
     return voltage;
 }
-void CentralProcessingUnit::setTdp(float tdp) {
-    if (tdp > 0 && tdp < 1000) {
-        this->tdp = tdp;
-    } else {
-        throw std::invalid_argument("Invalid TDP.");
-    }
+void CentralProcessingUnit::setTdp(const float &tdp) {
+    this->tdp = tdp;
 }
 float CentralProcessingUnit::getTdp() {
     return tdp;
 }
-void CentralProcessingUnit::setBaseClock(float baseClock) {
-    if (baseClock > 0 && baseClock < 1000) {
-        this->baseClock = baseClock;
-    } else {
-        throw std::invalid_argument("Invalid base clock.");
-    }
+void CentralProcessingUnit::setBaseClock(const float &baseClock) {
+    this->baseClock = baseClock;
 }
 float CentralProcessingUnit::getBaseClock() {
     return baseClock;
 }
-void CentralProcessingUnit::setMultiplier(float multiplier) {
-    if (multiplier > 0 && multiplier < 50) {
-        this->multiplier = multiplier;
-    } else {
-        throw std::invalid_argument("Invalid multiplier.");
-    }
+void CentralProcessingUnit::setMultiplier(const float &multiplier) {
+    this->multiplier = multiplier;
 }
 float CentralProcessingUnit::getMultiplier() {
     return multiplier;
 }
-void CentralProcessingUnit::setCoreClock(float coreClock) {
-    if (coreClock > 1000 && coreClock < 6000) {
-        this->coreClock = coreClock;
-    } else {
-        throw std::invalid_argument("Invalid core clock.");
-    }
+void CentralProcessingUnit::setCoreClock(const float &coreClock) {
+    this->coreClock = coreClock;
 }
 float CentralProcessingUnit::getCoreClock() {
     return coreClock;
 }
 std::string CentralProcessingUnit::toString() {
     std::ostringstream ss;
-    ss << "CPU ID: " << cpuID << std::endl;
-    ss << "Manufactured by: " << manufacturer << std::endl;
-    ss << "Model name: " << model << std::endl;
-    ss << "Cores: " << cores << std::endl;
-    ss << "Threads: " << threads << std::endl;
-    ss << "Voltage: " << voltage << std::endl;
-    ss << "TDP: " << tdp << std::endl;
-    ss << "Base clock: " << baseClock << std::endl;
-    ss << "Multiplier: " << multiplier << std::endl;
-    ss << "Core clock: " << coreClock << std::endl;
+    ss << cpuID << " " << manufacturer << " " << manufacturer << " ";
+    ss << cores << " " << threads << " " << voltage << " " << tdp << " ";
+    ss << baseClock << " " << multiplier << " " << coreClock << std::endl;
     return ss.str();
+}
+bool CentralProcessingUnit::operator==(const CentralProcessingUnit &other) const {
+    if (coreClock == other.coreClock) {
+        return true;
+    } else {
+        return false;
+    }
+}
+bool CentralProcessingUnit::operator!=(const CentralProcessingUnit &other) const {
+    bool temp = *this == other;
+    return !temp;
+}
+bool CentralProcessingUnit::operator>(const CentralProcessingUnit &other) const {
+    if (coreClock > other.coreClock) {
+        return true;
+    } else {
+        return false;
+    }
+}
+bool CentralProcessingUnit::operator<(const CentralProcessingUnit &other) const {
+    return other > *this;
+}
+bool CentralProcessingUnit::operator>=(const CentralProcessingUnit &other) const {
+    if (*this == other) {
+        return true;
+    } else {
+        return *this > other;
+    }
+}
+bool CentralProcessingUnit::operator<=(const CentralProcessingUnit &other) const {
+    if (*this == other) {
+        return true;
+    } else {
+        return *this < other;
+    }
+}
+CentralProcessingUnit& CentralProcessingUnit::operator++() {
+    ++multiplier;
+    return *this;
+}
+CentralProcessingUnit CentralProcessingUnit::operator++(int) {
+    CentralProcessingUnit temp = *this;
+    ++multiplier;
+    return temp;
+}
+CentralProcessingUnit& CentralProcessingUnit::operator--() {
+    --multiplier;
+    return *this;
+}
+CentralProcessingUnit CentralProcessingUnit::operator--(int) {
+    CentralProcessingUnit temp = *this;
+    --multiplier;
+    return temp;
+}
+std::ostream& CentralProcessingUnit::operator<<(std::ostream& os) {
+    os << toString();
+    return os;
 }

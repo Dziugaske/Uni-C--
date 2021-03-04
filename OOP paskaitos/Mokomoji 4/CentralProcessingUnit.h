@@ -19,22 +19,37 @@ class CentralProcessingUnit {
   public:
     CentralProcessingUnit();
     ~CentralProcessingUnit();
-    void setCores(int cores);
+    int getID();
+    void setManufacturer(const std::string &manufacturer);
+    std::string getManufacturer();
+    void setModel(const std::string &model);
+    std::string getModel();
+    void setCores(const int &cores);
     int getCores();
-    void setThreads(int threads);
+    void setThreads(const int &threads);
     int getThreads();
-    void setVoltage(float voltage);
+    void setVoltage(const float &voltage);
     float getVoltage();
-    void setTdp(float tdp);
+    void setTdp(const float &tdp);
     float getTdp();
-    void setBaseClock(float baseClock);
+    void setBaseClock(const float &baseClock);
     float getBaseClock();
-    void setMultiplier(float multiplier);
+    void setMultiplier(const float &multiplier);
     float getMultiplier();
-    void setCoreClock(float coreClock);
+    void setCoreClock(const float &coreClock);
     float getCoreClock();
-
-  public:
     std::string toString();
+    bool operator==(const CentralProcessingUnit &other) const;
+    bool operator!=(const CentralProcessingUnit &other) const;
+    bool operator>(const CentralProcessingUnit &other) const;
+    bool operator<(const CentralProcessingUnit &other) const;
+    bool operator>=(const CentralProcessingUnit &other) const;
+    bool operator<=(const CentralProcessingUnit &other) const;
+    CentralProcessingUnit& operator++();
+    CentralProcessingUnit operator++(int);
+    CentralProcessingUnit& operator--();
+    CentralProcessingUnit operator--(int);
+    std::ostream& operator<<(std::ostream& os);
+    //CentralProcessingUnit operator>>();
 };
 #endif
